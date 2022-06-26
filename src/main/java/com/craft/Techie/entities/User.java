@@ -19,7 +19,7 @@ public class User {
     String highlight;
     String company;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     List<Post> posts;
 
     //TODO: Followers, projects, chat to be implemented

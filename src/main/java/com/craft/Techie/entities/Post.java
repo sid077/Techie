@@ -19,6 +19,9 @@ public class Post {
     // for frontend segregation
     String tag;
 
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    User user;
+
     String imageUrl;
     String videoUrl;
 
