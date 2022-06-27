@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/addUser/")
-    public ResponseEntity<Boolean> addUser(@RequestBody UserDAO userDAO){
+    public ResponseEntity<UserDAO> addUser(@RequestBody UserDAO userDAO){
         return ResponseEntity.status(HttpStatus.OK).body(userService.addUser(userDAO));
     }
 
