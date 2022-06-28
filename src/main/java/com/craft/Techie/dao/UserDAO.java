@@ -16,8 +16,8 @@ public class UserDAO {
         User user = new User();
         user.setFirstName(userDAO.getFirstName());
         user.setLastName(userDAO.getLastName());
-        user.setHighlight(user.getHighlight());
-        user.setDesignation(user.getDesignation());
+        user.setHighlight(userDAO.getHighlight());
+        user.setDesignation(userDAO.getDesignation());
         user.setCompany(userDAO.getCompany());
         return user;
     }

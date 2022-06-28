@@ -4,9 +4,11 @@ import com.craft.Techie.dao.PostDAO;
 import com.craft.Techie.repositories.PostRepository;
 import com.craft.Techie.services.serviceimpl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PostService implements PostServiceImpl {
     @Autowired
     PostRepository postRepository;

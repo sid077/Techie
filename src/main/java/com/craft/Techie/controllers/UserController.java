@@ -31,9 +31,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUser(userId));
     }
 
-    @PutMapping
-    public ResponseEntity<Boolean> modifyUser(@RequestBody UserDAO userDAO){
-        return ResponseEntity.status(HttpStatus.OK).body(userService.modifyUser(userDAO));
+    @PutMapping("/updateUser/{id}")
+    public ResponseEntity<UserDAO> modifyUser(@RequestBody UserDAO userDAO, @PathVariable("id") int userId){
+        return ResponseEntity.status(HttpStatus.OK).body(userService.modifyUser(userDAO,userId));
     }
 
 }

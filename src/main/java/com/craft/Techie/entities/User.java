@@ -9,7 +9,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Table(name = "user_profile")
 public class User {
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 

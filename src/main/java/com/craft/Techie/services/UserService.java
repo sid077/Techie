@@ -26,12 +26,22 @@ public class UserService implements UserServiceImpl {
 
     @Override
     public boolean deleteUser(int userId) {
-        return false;
+        userRepository.findById(userId).orElseThrow(() -> new NoSuchElementException());
+        userRepository.deleteById(userId);
+        return true;
     }
 
     @Override
-    public boolean modifyUser(UserDAO userDAO) {
-        return false;
+    public UserDAO modifyUser(UserDAO userDAO, int userId) {
+        User originalUser = userRepository.getReferenceById(userId);
+        originalUser.setFirstName(userDAO.getFirstName());
+        originalUser.setLastName(userDAO.getLastName());
+        originalUser.setDesignation(userDAO.getDesignation());
+        originalUser.setCompany(userDAO.getCompany());
+        originalUser.setHighlight(userDAO.getHighlight());
+        originalUser =  userRepository.saveAndFlush(originalUser);
+        userDAO = modelMapper.map(originalUser,UserDAO.class);
+        return userDAO;
     }
 
     @Override

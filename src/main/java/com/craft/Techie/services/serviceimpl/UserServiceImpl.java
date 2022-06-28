@@ -8,6 +8,6 @@ import com.craft.Techie.dao.UserDAO;
 public interface UserServiceImpl {
     public UserDAO addUser(UserDAO userDAO);
     public boolean deleteUser(int userId);
-    public boolean modifyUser(UserDAO userDAO);
+    public UserDAO modifyUser(UserDAO userDAO,int userId);
     public UserDAO getUser(int id);
 }
