@@ -12,7 +12,7 @@ public class UserDAO {
     String designation;
     String highlight;
     String company;
-    public User convertToEntity(UserDAO userDAO) {
+    public static User convertToEntity(UserDAO userDAO) {
         User user = new User();
         user.setFirstName(userDAO.getFirstName());
         user.setLastName(userDAO.getLastName());
