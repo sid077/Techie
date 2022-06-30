@@ -25,9 +25,8 @@ public class PostService implements PostServiceImpl {
 
     @Override
     public PostDAO addPost(PostDAO postDAO, int userId) {
-        Post post = modelMapper.map(postDAO,Post.class);
-        User postingUser = new User();
-        postingUser.setId(userId);
+        Post post = PostDAO.convertToEntity(postDAO);
+        User postingUser = userRepository.findById(userId).orElseThrow(()->new NoSuchElementException());
         post.setUser(postingUser);
         post = postRepository.save(post);
         postDAO = modelMapper.map(post, PostDAO.class);

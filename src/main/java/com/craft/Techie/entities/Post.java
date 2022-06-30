@@ -21,6 +21,7 @@ public class Post {
     String tag;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",nullable = false)
     User user;
 
     String imageUrl;
