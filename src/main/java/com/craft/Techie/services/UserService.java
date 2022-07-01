@@ -2,13 +2,15 @@ package com.craft.Techie.services;
 
 import com.craft.Techie.dao.UserDAO;
 import com.craft.Techie.entities.User;
+import com.craft.Techie.exceptions.EntityNotFound;
 import com.craft.Techie.repositories.UserRepository;
 import com.craft.Techie.services.serviceimpl.UserServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.NoSuchElementException;
+import java.util.Objects;
+
 
 @Service
 public class UserService implements UserServiceImpl {
@@ -26,7 +28,8 @@ public class UserService implements UserServiceImpl {
 
     @Override
     public boolean deleteUser(int userId) {
-        userRepository.findById(userId).orElseThrow(() -> new NoSuchElementException());
+        userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFound("User",String.valueOf(userId)));
         userRepository.deleteById(userId);
         return true;
     }
@@ -46,7 +49,12 @@ public class UserService implements UserServiceImpl {
 
     @Override
     public UserDAO getUser(int id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+        if(userRepository.findById(id).isEmpty()){
+            throw new EntityNotFound("User",String.valueOf(id));
+        }
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFound("User",String.valueOf(id)));
+
         UserDAO userDAO = modelMapper.map(user,UserDAO.class);
         return userDAO;
     }
