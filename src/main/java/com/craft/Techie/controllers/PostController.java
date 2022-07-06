@@ -25,8 +25,8 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.OK).body(postService.getAllPostOfUser(userId));
     }
     @PostMapping("/addPost/{id}")
-    public ResponseEntity<Boolean> addPost(@PathVariable("id") int userId,@RequestBody PostDAO postDAO){
-        return ResponseEntity.status(HttpStatus.OK).body(postService.addPost(postDAO));
+    public ResponseEntity<PostDAO> addPost(@PathVariable("id") int userId,@RequestBody PostDAO postDAO){
+        return ResponseEntity.status(HttpStatus.OK).body(postService.addPost(postDAO, userId));
     }
     @DeleteMapping("/deletePost/{id}")
     public ResponseEntity<Boolean> deletePost(@PathVariable("id") int postId){

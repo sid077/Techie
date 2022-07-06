@@ -20,7 +20,8 @@ public class Post {
     // for frontend segregation
     String tag;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.DETACH)
+    @JoinColumn(name = "user_id",nullable = false)
     User user;
 
     String imageUrl;
